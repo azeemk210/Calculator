@@ -37,9 +37,64 @@ crossorigin=""/>
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    L.marker([51.50789953071717, -0.12460382873527465]).addTo(map);
-    L.circle([51.50789953071717, -0.12460382873527465], {radius:100}).addTo(map)
-    //L.circleMarker([51.50789953071717, -0.12460382873527465], {radius:100}).addTo(map)
+    //L.marker([51.50789953071717, -0.12460382873527465]).addTo(map);
+    //L.circle([51.50789953071717, -0.12460382873527465], {color: 'red', fillColor: 'blue',  fillOpacity: 0.2, radius:500}).addTo(map)
+    //L.circleMarker([51.50789953071717, -0.12460382873527465], {radius:100}).addTo(map).bindPopup('I am a circle')
+    
+    // var latlong = [
+    //         [[45.51, -122.68],
+    //         [37.77, -122.43],
+    //         [34.04, -118.2]],
+    //         [[40.78, -73.91],
+    //         [41.83, -87.62],
+    //         [32.76, -96.72]]
+    //     ];
+    //     var polyline = L.polyline(latlong).addTo(map)
+    //     map.fitBounds(polyline.getBounds())
+
+    let geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          [
+            9.721367317120695,
+            51.25867849058534
+          ],
+          [
+            14.031803593630599,
+            47.530158325087655
+          ],
+          [
+            18.936164492852186,
+            46.99613250560063
+          ],
+          [
+            16.734060181221565,
+            45.28256486883552
+          ]
+        ],
+        "type": "LineString"
+      }
+    }
+  ]
+}
+L.geoJSON(geojson, {
+    style: function (feature) {
+        return {color: 'red'};
+    }
+}).bindPopup(function (layer) {
+    return layer.feature.properties.description;
+}).addTo(map);
+
+map.fitBounds(geojson.getBounds())
+
+// L.geoJSON(geojson).bindPopup(function (layer) {
+//      return layer.feature.properties.description;
+//  }).addTo(map);
 </script>
  
 </body>
