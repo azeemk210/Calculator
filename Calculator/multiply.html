@@ -1,24 +1,35 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+
 <body>
     <div>
         <p>This is first number
-        <input type="text">
-    </p>
+            <input type="text" id="num1" min="0" max="100" value="5">
+        </p>
     </div>
 
     <div>
         <p>This is second number
-        <input type="text">
-    </p>
+            <input type="text" id="num2" min="0" max="100" value="5">
+        </p>
     </div>
-    
-    
-</body>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <p id="result"></p>
+
+    <input type="button" id="multiply" value="Multiply">
+    <script>
+        $("#multiply").on("click", function () {
+            // Convert values to numbers before multiplication
+            let result = parseFloat($('#num1').val()) * parseFloat($('#num2').val());
+            $("#result").text("The result is: " + result);
+        });
+    </script>
+
+</body>
 </html>
